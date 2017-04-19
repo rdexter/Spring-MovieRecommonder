@@ -110,6 +110,7 @@ public class MovieController {
 		List<Movie> movieList=service.getMovies(userId,offset);
 		ModelAndView model = new ModelAndView();
 		model.addObject("movieList", movieList);
+		model.addObject("msg", "Hello moto");
 		LOGGER.info("movieList home : "+movieList.toString());
 		logProcessingTime(apiName, start);
 		model.setViewName("home");
