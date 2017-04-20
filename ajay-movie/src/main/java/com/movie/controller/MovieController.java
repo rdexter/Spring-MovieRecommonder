@@ -116,7 +116,25 @@ public class MovieController {
 		model.setViewName("home");
 		return model;
 	}
-
+	
+	@RequestMapping(value = "/home1", method = RequestMethod.GET)
+	@ResponseBody
+	public JSONArray home1(@RequestParam("userId") long userId,@RequestParam("offset") int offset) {
+		long start = System.currentTimeMillis();
+		String apiName="home";
+		LOGGER.info("REQUEST home : ");
+		List<Movie> movieList=service.getMovies(userId,offset);
+		ModelAndView model = new ModelAndView();
+		model.addObject("movieList", movieList);
+		model.addObject("msg", "Hello moto");
+		LOGGER.info("movieList home : "+movieList.toString());
+		JSONArray jsonArray=new JSONArray();
+		jsonArray.addAll(movieList);
+		logProcessingTime(apiName, start);
+		model.setViewName("home");
+		return jsonArray;
+	}
+	
 	@RequestMapping(value = "/addMovieLikeByTheUser", method = RequestMethod.GET)
 	@ResponseBody
 	public int addMovieLikeByTheUser(@RequestBody String jsonString){
