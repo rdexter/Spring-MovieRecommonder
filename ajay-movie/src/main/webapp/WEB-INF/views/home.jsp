@@ -41,7 +41,7 @@
 						<c:if test="${i<=4 }">
 							<div class="col-sm-3">
 								<div class="thumbnail">
-									<img src={title}>
+									<img src="${movie.url}">
 									<div class="caption">
 										<h4
 											style="margin-bottom: 24px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
@@ -129,7 +129,7 @@ function print(dataArray,userid,offset){
 		for(var d in dataArray){
 			var a=1;
 			//console.log(dataArray[0].id);
-			$("#all").append('<div class="col-sm-3"><div class="thumbnail"><img src="'+a+'"><div class="caption"><h4 style="margin-bottom: 24px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">'+dataArray[d].title+'</h4><div class="row"><div class="col-xs-6"><form action="/like?movie='+dataArray[d].id+'&amp;user='+userid+'" method="post" class="text-center"><button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span></button></form></div><div class="col-xs-6"><form action="/dislike?movie='+dataArray[d].id+'&amp;user='+userid+'" method="post" class="text-center"><button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span></button></form></div></div></div></div></div>');
+			$("#all").append('<div class="col-sm-3"><div class="thumbnail"><img src="'+dataArray[d].url+'"><div class="caption"><h4 style="margin-bottom: 24px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">'+dataArray[d].title+'</h4><div class="row"><div class="col-xs-6"><form action="/like?movie='+dataArray[d].id+'&amp;user='+userid+'" method="post" class="text-center"><button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span></button></form></div><div class="col-xs-6"><form action="/dislike?movie='+dataArray[d].id+'&amp;user='+userid+'" method="post" class="text-center"><button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span></button></form></div></div></div></div></div>');
 		}
 }
 </script>

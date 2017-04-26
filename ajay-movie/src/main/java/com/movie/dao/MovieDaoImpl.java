@@ -18,7 +18,7 @@ import com.movie.vo.MovieUserMatrix;
 public class MovieDaoImpl implements MovieDao {
 	/** The logger. */
 	private static final Logger LOGGER = Logger.getLogger(MovieDaoImpl.class);
-	private static final int LIMIT = 20;
+	private static final int LIMIT = 8;
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
@@ -138,9 +138,10 @@ public class MovieDaoImpl implements MovieDao {
 		LOGGER.info("Entering into getMovies .. ");
 
 		try{
-			String sql="SELECT movie_id,movie_name,url FROM movie ORDER BY updated_on LIMIT ? OFFSET ?";
+			String sql="SELECT movie_id,movie_name,url FROM movie ORDER BY updated_on desc LIMIT ? OFFSET ?";
 			List<Movie> movieList=new ArrayList<Movie>();
 			Integer offset=(pageNumber-1)*LIMIT+1;	
+			offset=0;
 			List<Map<String,Object>> resultSet=jdbcTemplate.queryForList(sql, LIMIT,offset);
 			for (Map<String, Object> map : resultSet) {
 				Movie m=new Movie();
