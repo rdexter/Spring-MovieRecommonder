@@ -1,14 +1,16 @@
 package com.movie.controller;
 
-import org.springframework.stereotype.Controller;  
-import org.springframework.web.bind.annotation.RequestMapping;  
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;  
 import org.springframework.web.servlet.ModelAndView;  
 
 @Controller  
 public class LoginController {  
 
-	@RequestMapping("login")  
+	/*@RequestMapping("login")  
 	public ModelAndView getLoginForm(  
 			@RequestParam(required = false) String authfailed, String logout,  
 			String denied) {  
@@ -22,6 +24,12 @@ public class LoginController {
 		}  
 		return new ModelAndView("login", "message", message);  
 	}  
+	
+   @RequestMapping(value = "/login", method = RequestMethod.GET)
+   public String login(ModelMap model) {
+   	//LOGGER.info("Entering into .. login");
+       return "login";
+   }
 
 	@RequestMapping("user")  
 	public String geUserPage() {  
@@ -36,6 +44,6 @@ public class LoginController {
 	@RequestMapping("403page")  
 	public String ge403denied() {  
 		return "redirect:login?denied";  
-	}  
+	}  */
 
 }  

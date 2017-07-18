@@ -2,7 +2,7 @@ package com.movie.vo;
 
 import java.util.List;
 
-public class User {
+public class UserVo {
 	private long userId;
 	private String name;
 	private String userName;

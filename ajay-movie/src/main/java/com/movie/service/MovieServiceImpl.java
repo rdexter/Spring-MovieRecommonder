@@ -13,7 +13,7 @@ import com.movie.dao.MovieDao;
 import com.movie.utils.MovieUtils;
 import com.movie.vo.Movie;
 import com.movie.vo.MovieUserMatrix;
-import com.movie.vo.User;
+import com.movie.vo.UserVo;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -30,7 +30,7 @@ public class MovieServiceImpl implements MovieService {
 	 * Sim(U1,U2)=[int(L1,L2)+int(D1,D2)-int(L1,D2)-int(L2,D1)]/[union(L1,L2,D1,D2)]
 	 * Sim(U1,U2)=[A+B-C-D]/E
 	 */
-	private double calculateSimilarity(User user1, long userId2) {
+	private double calculateSimilarity(UserVo user1, long userId2) {
 		List<Long> L1=null;
 		List<Long> D1=null;
 		if(user1.getListOfMoviesLikedByTheUser()==null){
@@ -80,7 +80,7 @@ public class MovieServiceImpl implements MovieService {
 	 * |ML|+|MD| represents the total number of users who have liked or disliked the movie M
 	 */
 
-	private double  getProbability(User u1,long movieId){
+	private double  getProbability(UserVo u1,long movieId){
 		List<Long> ML=dao.getUsersWhoLikeTheMovie(movieId);
 		List<Long> MD=dao.getUsersWhoDisLikeTheMovie(movieId);
 		
@@ -96,7 +96,7 @@ public class MovieServiceImpl implements MovieService {
 		return p;
 	}
 
-	private Double  calculateZ(User u1,List<Long>userIds){
+	private Double  calculateZ(UserVo u1,List<Long>userIds){
 		Double Z=(double) 0;
 		for (Long user: userIds) {
 			Z=Z+calculateSimilarity(u1, user);
@@ -109,7 +109,7 @@ public class MovieServiceImpl implements MovieService {
 		
 		List<Long> movieIds=dao.getMoviesNotRatedByTheUsers(userId);
 		
-		User u1=new User();
+		UserVo u1=new UserVo();
 		u1.setUserId(userId);
 		LOGGER.info("movieIds..."+movieIds);
 		Map<Long,Double> listOfProbabilties= new HashMap<Long,Double>();

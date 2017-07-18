@@ -1,6 +1,5 @@
 package com.movie.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -22,7 +21,7 @@ import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
 @RestController
-@RequestMapping("/api")
+//@RequestMapping("/api")
 public class MovieController {
 	/** The logger. */
 	private static final Logger LOGGER = Logger.getLogger(MovieController.class);
